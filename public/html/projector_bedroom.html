@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卧室投影仪 - 智能家居控制</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+</head>
+<body data-device-type="projector" data-scene="bedroom">
+    <div id="header-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main>
+            <div class="device-control-container main-content-area">
+                <div class="control-header">
+                    <h1 id="device-name">卧室投影仪</h1>
+                    <a href="bedroom.html" class="back-link">&larr; 返回卧室</a>
+                </div>
+
+                <div class="control-layout">
+                    <div class="control-panel">
+                        <h2>控制</h2>
+                        <div class="control-group">
+                            <label>电源:</label>
+                            <button id="power-toggle" class="control-button">切换</button>
+                            <span id="power-status" class="status-indicator">未知</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="source-select">输入源:</label>
+                            <select id="source-select" class="control-select">
+                                <option value="hdmi1">HDMI 1</option>
+                                <option value="hdmi2">HDMI 2</option>
+                                <option value="usb">USB</option>
+                                <option value="network">网络</option>
+                            </select>
+                            <span id="source-status" class="status-indicator">未知</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="volume-slider">音量:</label>
+                            <input type="range" id="volume-slider" min="0" max="100" step="1" class="control-slider">
+                            <span id="volume-value" class="slider-value">--</span>
+                        </div>
+                        <div class="control-group">
+                            <label>静音:</label>
+                            <button id="mute-toggle" class="control-button">切换</button>
+                            <span id="mute-status" class="status-indicator"></span>
+                        </div>
+                        <span id="control-status" class="status-indicator" style="grid-column: 1 / span 3; text-align: center; margin-top: 10px;"></span>
+                    </div>
+
+                    <div class="status-and-chart">
+                        <h2>状态</h2>
+                         <div class="status-display">
+                            <p><span>设备状态:</span> <span id="projector-status">未知</span></p>
+                            <p><span>当前输入源:</span> <span id="current-source">未知</span></p>
+                            <p><span>当前音量:</span> <span id="current-volume">--</span></p>
+                            <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_projector.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            insertHeader();
+            insertFooter();
+            if (typeof initializeProjectorControl === 'function') {
+                initializeProjectorControl();
+            } else {
+                 console.error('initializeProjectorControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                     mainContent.innerHTML = '<p style="color: red;">页面脚本加载失败，无法控制设备。</p>' + mainContent.innerHTML;
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

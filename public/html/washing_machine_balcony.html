@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>洗衣机控制 - 阳台</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+</head>
+<body data-device-type="washing_machine" data-scene="balcony">
+    <!-- Main Content -->
+    <div class="device-control-container main-content-area">
+        <!-- Header -->
+        <header class="control-header">
+            <h1 id="device-name">阳台洗衣机</h1>
+            <a href="balcony.html" class="back-link">&larr; 返回阳台</a>
+        </header>
+
+        <main class="control-layout">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2>设备控制</h2>
+                <div class="control-group">
+                    <label>电源:</label>
+                    <button id="power-toggle" class="control-button toggle-button">
+                        <span class="button-icon"></span> <!-- Icon can indicate state -->
+                        <span class="button-text">开启</span>
+                    </button>
+                    <span id="power-status-indicator" class="status-indicator">关</span>
+                </div>
+                <div class="control-group">
+                    <label>操作:</label>
+                    <button id="start-pause-button" class="control-button">启动</button>
+                     <span id="operation-status" class="status-indicator">待机</span>
+                </div>
+                <div class="control-group">
+                    <label for="mode-select">模式:</label>
+                    <select id="mode-select" class="control-select">
+                        <option value="standard">标准洗</option>
+                        <option value="quick">快洗</option>
+                        <option value="strong">强力洗</option>
+                        <option value="wool">羊毛</option>
+                        <option value="spin">单脱水</option>
+                        <option value="tub_clean">桶自洁</option>
+                    </select>
+                    <span id="mode-status-indicator" class="status-indicator">--</span>
+                </div>
+                <div class="control-group">
+                    <label for="water-level-select">水位:</label>
+                    <select id="water-level-select" class="control-select">
+                        <option value="low">低</option>
+                        <option value="medium">中</option>
+                        <option value="high">高</option>
+                        <option value="auto">自动</option>
+                    </select>
+                     <span id="water-level-indicator" class="status-indicator">--</span>
+                </div>
+                 <span id="control-feedback" class="status-indicator" style="grid-column: 1 / span 3; text-align: center; margin-top: 10px;"></span>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="status-panel">
+                <h2>设备状态</h2>
+                <div class="status-display">
+                    <p><span>电源状态:</span> <span id="power-status">未知</span></p>
+                    <p><span>运行状态:</span> <span id="current-status">未知</span></p>
+                    <p><span>当前模式:</span> <span id="current-mode">--</span></p>
+                    <p><span>选定水位:</span> <span id="current-water-level">--</span></p>
+                    <p><span>剩余时间:</span> <span id="remaining-time">--:--</span></p>
+                    <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_washing_machine.js"></script> <!-- Placeholder for specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Assuming sharedComponents.js handles header/footer insertion if needed
+             if (typeof insertHeader === 'function') { /* Conditional if using JS header */ }
+             if (typeof insertFooter === 'function') insertFooter(); // Assuming standard footer
+
+            // Initialize washing machine control logic
+            if (typeof initializeWashingMachineControl === 'function') {
+                initializeWashingMachineControl();
+            } else {
+                 console.error('initializeWashingMachineControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                     // Simple user feedback without overwriting structure yet
+                     const feedbackSpan = document.getElementById('control-feedback');
+                     if (feedbackSpan) {
+                        feedbackSpan.textContent = '页面脚本加载失败，无法控制设备。';
+                        feedbackSpan.style.color = 'red';
+                     } else {
+                        // Fallback if span not found
+                        mainContent.insertAdjacentHTML('afterbegin', '<p style="color: red; text-align: center;">页面脚本加载失败。</p>');
+                     }
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

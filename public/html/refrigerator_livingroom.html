@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>客厅冰箱 - 智能家居控制</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+</head>
+<body data-device-type="refrigerator" data-scene="livingroom">
+    <div id="header-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main>
+            <div class="device-control-container main-content-area">
+                <div class="control-header">
+                    <h1 id="device-name">客厅冰箱</h1>
+                    <a href="livingroom.html" class="back-link">&larr; 返回客厅</a>
+                </div>
+
+                <div class="control-layout">
+                    <!-- 左侧：控制面板 -->
+                    <div class="control-panel">
+                        <h2>控制</h2>
+                        <div class="control-group">
+                            <label for="fridge-temp-slider">冷藏室温度 (°C):</label>
+                            <input type="range" id="fridge-temp-slider" min="0" max="10" step="1" class="control-slider">
+                            <span id="fridge-temp-value" class="slider-value">--</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="freezer-temp-slider">冷冻室温度 (°C):</label>
+                            <input type="range" id="freezer-temp-slider" min="-25" max="-10" step="1" class="control-slider">
+                            <span id="freezer-temp-value" class="slider-value">--</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="mode-select">运行模式:</label>
+                            <select id="mode-select" class="control-select">
+                                <option value="smart">智能</option>
+                                <option value="eco">节能</option>
+                                <option value="fast_cool">速冷</option>
+                                <option value="fast_freeze">速冻</option>
+                            </select>
+                            <span id="mode-status" class="status-indicator">未知</span>
+                        </div>
+                         <div class="control-group">
+                            <label>制冰机:</label>
+                            <button id="icemaker-toggle" class="control-button">切换</button>
+                             <span id="icemaker-status" class="status-indicator">未知</span>
+                        </div>
+                         <span id="control-status" class="status-indicator" style="grid-column: 2 / span 2; text-align: left; margin-top: -10px;"></span>
+                    </div>
+
+                    <!-- 右侧：状态显示与图表 -->
+                    <div class="status-and-chart">
+                        <h2>状态与数据</h2>
+                         <div class="status-display">
+                            <p><span>冷藏室设定温度:</span> <span id="set-fridge-temp">--</span> °C</p>
+                            <p><span>冷藏室当前温度:</span> <span id="current-fridge-temp">--</span> °C</p>
+                            <p><span>冷冻室设定温度:</span> <span id="set-freezer-temp">--</span> °C</p>
+                            <p><span>冷冻室当前温度:</span> <span id="current-freezer-temp">--</span> °C</p>
+                            <p><span>运行模式:</span> <span id="current-mode">未知</span></p>
+                            <p><span>制冰机状态:</span> <span id="current-icemaker-status">未知</span></p>
+                            <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                         </div>
+                         <!-- Keep one chart container, modify ID and title -->
+                         <div class="chart-container fridge-chart-container">
+                              <h3>历史温度</h3> <!-- General title -->
+                              <canvas id="temperature-chart"></canvas> <!-- General ID -->
+                              <p id="chart-loading-msg" class="chart-loading-msg" style="display: none;">加载中...</p>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer id="app-footer"></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_refrigerator.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            insertHeader();
+            insertFooter();
+            if (typeof initializeRefrigeratorControl === 'function') {
+                initializeRefrigeratorControl();
+            } else {
+                 console.error('initializeRefrigeratorControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                     mainContent.innerHTML = '<p style="color: red;">页面脚本加载失败，无法控制设备。</p>' + mainContent.innerHTML;
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

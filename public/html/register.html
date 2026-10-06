@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>智能家居系统 - 注册</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body data-page="register">
+    <div class="content-wrapper">
+        <div class="login-container register-container"> <!-- 使用相似的容器样式，可加 register-container 以便区分 -->
+            <div class="logo-area">
+                <span class="logo-placeholder">🏠</span>
+            </div>
+            <h1>注册新账号</h1>
+            <form id="register-form">
+                <div class="form-group">
+                    <label for="username">用户名</label>
+                    <input type="text" id="username" name="username" required placeholder="请设置用户名" />
+                </div>
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" id="password" name="password" required placeholder="请设置密码" />
+                </div>
+                <div class="form-group">
+                    <label for="confirm-password">确认密码</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required placeholder="请再次输入密码" />
+                </div>
+                <button type="submit">注册</button>
+                <p id="error-message" class="error-message"></p>
+                <p class="form-links"><a href="login.html">已有账号？返回登录</a></p>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <!-- <script src="../js/sharedComponents.js"></script> -->
+    <script src="../js/register.js"></script>
+</body>
+</html> 

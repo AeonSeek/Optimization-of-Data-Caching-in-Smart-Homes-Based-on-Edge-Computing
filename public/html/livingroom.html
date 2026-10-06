@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>智能家居系统 - 客厅</title>
+        <!-- <link rel="stylesheet" href="../css/style.css"> REMOVED -->
+        <link rel="stylesheet" href="../css/base.css" />
+        <link rel="stylesheet" href="../css/layout.css" />
+        <link rel="stylesheet" href="../css/components.css" />
+        <link rel="stylesheet" href="../css/responsive.css" />
+        <!-- 考虑引入图标库 -->
+    </head>
+    <body data-scene="livingroom">
+        <div id="header-placeholder"></div>
+
+        <div class="content-wrapper">
+            <main>
+                <div class="scene-content-container main-content-area">
+                    <h1 id="scene-title">客厅</h1>
+
+                    <!-- 场景模式区域 -->
+                    <div class="scene-modes-area">
+                        <!-- <h3 class="section-subtitle">场景模式</h3> Optional Subtitle -->
+                        <div class="scene-modes-grid" id="scene-modes-grid">
+                            <!-- 示例场景模式按钮 -->
+                            <button class="scene-mode-button" data-mode-id="livingroom-movie">
+                                <span class="mode-icon">🎬</span>
+                                <span class="mode-label">电影模式</span>
+                            </button>
+                            <button class="scene-mode-button" data-mode-id="livingroom-read">
+                                <span class="mode-icon">📖</span>
+                                <span class="mode-label">阅读模式</span>
+                            </button>
+                            <button class="scene-mode-button" data-mode-id="livingroom-leave">
+                                <span class="mode-icon">🚪</span>
+                                <span class="mode-label">离开客厅</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="device-list" class="device-list">
+                        <!-- JS 会加载设备，结构会类似下方 -->
+                        <!-- 
+                    <div class="device">
+                        <div class="device-icon"><span>💡</span></div> 
+                        <div class="device-info">
+                            <h3>设备名称</h3>
+                            <p class="device-status">状态/关键数据</p> 
+                        </div>
+                        <div class="device-details"> 
+                            <p>详细数据...</p>
+                            <p class="last-updated"><small>更新时间</small></p>
+                        </div>
+                    </div> 
+                    -->
+                        <p>正在加载设备数据...</p>
+                    </div>
+                    <a href="index.html"
+                        ><button id="back-button">返回主界面</button></a
+                    >
+                </div>
+            </main>
+        </div>
+
+        <footer id="app-footer"></footer>
+
+        <!-- Template for Device Card -->
+        <template id="device-card-template">
+            <div class="device">
+                <div class="device-icon"><span></span></div>
+                <div class="device-info">
+                    <h3></h3>
+                    <p class="device-status"></p>
+                </div>
+                <div class="device-details">
+                    <!-- Details will be added here -->
+                    <p class="last-updated">
+                        <small>更新: <span></span></small>
+                    </p>
+                </div>
+            </div>
+        </template>
+
+        <script src="../js/theme.js"></script>
+        <script src="../js/sharedComponents.js"></script>
+        <script src="../js/scene.js"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                insertHeader();
+                insertFooter();
+            });
+        </script>
+    </body>
+</html>

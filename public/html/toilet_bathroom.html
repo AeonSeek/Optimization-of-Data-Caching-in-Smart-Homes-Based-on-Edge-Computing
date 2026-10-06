@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>智能马桶控制 - 卫生间</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <!-- Removed inline style block, using device_control.css now -->
+</head>
+<body data-device-type="toilet" data-scene="bathroom">
+    <!-- Main Content -->
+    <div class="device-control-container main-content-area">
+        <!-- Header - Moved inside container and elements reordered -->
+        <header class="control-header">
+            <h1 id="device-name">智能马桶</h1>
+            <a href="bathroom.html" class="back-link">&larr; 返回卫生间</a>
+        </header>
+
+        <main class="control-layout"> <!-- Grid layout for panels -->
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2>设备控制</h2>
+                <!-- Use control-grid directly inside control-panel for toilet -->
+                <div class="control-grid">
+                    <!-- Each button is an item in the grid, no need for .control-group here -->
+                    <button id="seat-heat-toggle" class="control-button toggle-button">
+                        <span class="button-icon">🔥</span>
+                        <span class="button-text">开启加热</span>
+                    </button>
+                    <button id="flush-button" class="control-button">
+                        <span class="button-icon">💧</span>
+                        冲水
+                    </button>
+                    <button id="rear-wash-button" class="control-button">
+                        <span class="button-icon">🫧</span>
+                        臀洗
+                    </button>
+                    <button id="front-wash-button" class="control-button">
+                        <span class="button-icon">🌸</span>
+                        妇洗
+                    </button>
+                    <button id="dry-button" class="control-button">
+                        <span class="button-icon">🌬️</span>
+                        烘干
+                    </button>
+                     <button id="stop-button" class="control-button stop-button">
+                        <span class="button-icon">🛑</span>
+                        停止
+                    </button>
+                    <!-- Add Water Temp/Pressure Adjustments if needed, maybe using control-group style -->
+                </div>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="status-panel">
+                <h2>设备状态</h2>
+                <div class="status-display">
+                    <p id="status-display-p"><span>当前状态:</span> <span class="value">加载中...</span></p>
+                    <p id="seat-heat-status-p"><span>座圈加热:</span> <span class="value">--</span></p>
+                    <p id="water-temp-level-p"><span>水温等级:</span> <span class="value">--</span></p>
+                    <p id="water-pressure-level-p"><span>水压等级:</span> <span class="value">--</span></p>
+                    <p class="last-updated">最后更新: <span id="last-updated">--:--</span></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_toilet.js"></script>
+    <script>
+        // Optional: Initialize header/footer
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     if (typeof insertHeader === 'function') insertHeader();
+        //     if (typeof insertFooter === 'function') insertFooter();
+        // });
+    </script>
+</body>
+</html> 

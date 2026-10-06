@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>客厅电视 - 智能家居控制</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+</head>
+<body data-device-type="television" data-scene="livingroom">
+    <div id="header-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main>
+            <div class="device-control-container main-content-area">
+                <div class="control-header">
+                    <h1 id="device-name">客厅电视</h1>
+                    <a href="livingroom.html" class="back-link">&larr; 返回客厅</a>
+                </div>
+
+                <div class="control-layout">
+                    <!-- 左侧：控制面板 -->
+                    <div class="control-panel">
+                        <h2>控制</h2>
+                        <div class="control-group">
+                            <label>电源:</label>
+                            <button id="power-toggle" class="control-button">切换</button>
+                             <span id="power-status" class="status-indicator">未知</span>
+                        </div>
+                        <div class="control-group">
+                             <label>音量:</label>
+                             <div class="vertical-control-layout">
+                                <div style="display: flex; align-items: center; gap: 10px; width: 100%;">
+                                   <button id="volume-down" class="control-button">-</button>
+                                   <input type="range" id="volume-slider" min="0" max="100" step="1" class="control-slider" style="flex-grow: 1;" aria-label="音量调节">
+                                   <button id="volume-up" class="control-button">+</button>
+                                </div>
+                               <button id="mute-toggle" class="control-button" style="margin-top: 5px; width: auto;">静音</button>
+                             </div>
+                             <span id="volume-value" class="slider-value" ></span>
+                        </div>
+                         <div class="control-group">
+                             <label>频道:</label>
+                              <div class="vertical-control-layout">
+                                 <div style="display: flex; align-items: center; gap: 10px; width: 100%; flex-wrap: wrap;">
+                                    <button id="channel-down" class="control-button">CH-</button>
+                                    <input type="number" id="channel-input" min="1" class="control-input" style="width: 70px; text-align: center;" aria-label="频道输入">
+                                    <button id="channel-up" class="control-button">CH+</button>
+                                    <button id="channel-set" class="control-button" style="margin-left: auto;">跳转</button>
+                                 </div>
+                              </div>
+                              <span id="channel-status" class="status-indicator">未知</span>
+                         </div>
+                         <div class="control-group">
+                             <label for="source-select">输入源:</label>
+                             <select id="source-select" class="control-select">
+                                 <option value="HDMI1">HDMI 1</option>
+                                 <option value="HDMI2">HDMI 2</option>
+                                 <option value="AV">AV</option>
+                                 <option value="TV">电视</option>
+                                 <!-- 根据实际情况添加更多源 -->
+                             </select>
+                              <span id="source-status" class="status-indicator">未知</span>
+                         </div>
+                          <span id="control-status" class="status-indicator" style="grid-column: 2 / span 2; text-align: left; margin-top: -10px;"></span>
+                    </div>
+
+                    <!-- 右侧：状态显示 -->
+                    <div class="status-and-chart">
+                        <h2>状态</h2>
+                         <div class="status-display">
+                            <p><span>电源状态:</span> <span id="tv-power-status">未知</span></p>
+                            <p><span>当前频道:</span> <span id="current-channel">--</span></p>
+                            <p><span>当前音量:</span> <span id="current-volume">--</span> <span id="mute-indicator" style="font-weight: normal; color: var(--text-muted); margin-left: 5px;"></span></p>
+                            <p><span>输入源:</span> <span id="current-source">未知</span></p>
+                            <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                         </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_tv.js"></script> <!-- 引入电视控制 JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            insertHeader();
+            insertFooter();
+            if (typeof initializeTvControl === 'function') {
+                initializeTvControl();
+            } else {
+                 console.error('initializeTvControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                     mainContent.innerHTML = '<p style="color: red;">页面脚本加载失败，无法控制设备。</p>' + mainContent.innerHTML;
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

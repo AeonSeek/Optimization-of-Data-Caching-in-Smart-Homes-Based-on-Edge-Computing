@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>智能家居系统 - 卧室</title>
+        <!-- <link rel="stylesheet" href="../css/style.css"> REMOVED -->
+        <link rel="stylesheet" href="../css/base.css" />
+        <link rel="stylesheet" href="../css/layout.css" />
+        <link rel="stylesheet" href="../css/components.css" />
+        <link rel="stylesheet" href="../css/responsive.css" />
+    </head>
+    <body data-scene="bedroom">
+        <!-- 標識為臥室 -->
+        <div id="header-placeholder"></div>
+        <!-- Header Placeholder -->
+
+        <div class="content-wrapper">
+            <main>
+                <div class="scene-content-container main-content-area">
+                    <!-- Added main-content-area class -->
+                    <h1 id="scene-title">卧室</h1>
+
+                    <!-- 場景模式區域 -->
+                    <div class="scene-modes-area">
+                        <div class="scene-modes-grid" id="scene-modes-grid">
+                            <!-- 臥室示例場景模式按鈕 -->
+                            <button class="scene-mode-button" data-mode-id="bedroom-sleep">
+                                <span class="mode-icon">😴</span>
+                                <span class="mode-label">睡眠模式</span>
+                            </button>
+                            <button class="scene-mode-button" data-mode-id="bedroom-wakeup">
+                                <span class="mode-icon">☀️</span>
+                                <span class="mode-label">起床模式</span>
+                            </button>
+                            <button class="scene-mode-button" data-mode-id="bedroom-relax">
+                                <span class="mode-icon">🧘</span>
+                                <span class="mode-label">放鬆模式</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div id="device-list" class="device-list">
+                        <!-- JS 會載入設備，結構會類似下方 -->
+                        <!-- 
+                    <div class="device">
+                        <div class="device-icon"><span>💡</span></div> 
+                        <div class="device-info">
+                            <h3>設備名稱</h3>
+                            <p class="device-status">狀態/關鍵數據</p> 
+                        </div>
+                        <div class="device-details"> 
+                            <p>詳細數據...</p>
+                            <p class="last-updated"><small>更新時間</small></p>
+                        </div>
+                    </div> 
+                    -->
+                        <p>正在加载设备数据...</p>
+                    </div>
+                    <a href="index.html"
+                        ><button id="back-button">返回主界面</button></a
+                    >
+                </div>
+            </main>
+        </div>
+
+        <!-- Template for Device Card -->
+        <template id="device-card-template">
+            <div class="device">
+                <div class="device-icon"><span></span></div>
+                <div class="device-info">
+                    <h3></h3>
+                    <p class="device-status"></p>
+                </div>
+                <div class="device-details">
+                    <!-- Details will be added here -->
+                    <p class="last-updated">
+                        <small>更新: <span></span></small>
+                    </p>
+                </div>
+            </div>
+        </template>
+
+        <footer id="app-footer"></footer>
+
+        <script src="../js/theme.js"></script>
+        <script src="../js/sharedComponents.js"></script>
+        <!-- Shared components loader -->
+        <script src="../js/scene.js"></script>
+        <script>
+            // Insert the header after DOM is ready and scripts are loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                insertHeader();
+                insertFooter();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>客厅空调 - 智能家居控制</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" /> <!-- 新增设备控制页专属 CSS -->
+    <!-- 可能需要引入图表库 CSS, e.g., Chart.js -->
+</head>
+<body data-device-type="air_conditioner" data-scene="livingroom">
+    <div id="header-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main>
+            <div class="device-control-container main-content-area">
+                <div class="control-header">
+                    <h1 id="device-name">客厅空调</h1>
+                    <a href="livingroom.html" class="back-link">&larr; 返回客厅</a>
+                </div>
+
+                <div class="control-layout">
+                    <!-- 左侧：控制面板 -->
+                    <div class="control-panel">
+                        <h2>控制</h2>
+                        <div class="control-group">
+                            <label>电源:</label>
+                            <button id="power-toggle" class="control-button">切换</button>
+                            <span id="power-status" class="status-indicator">未知</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="mode-select">模式:</label>
+                            <select id="mode-select" class="control-select">
+                                <option value="auto">自动</option>
+                                <option value="cool">制冷</option>
+                                <option value="heat">制热</option>
+                                <option value="fan">送风</option>
+                                <option value="dry">除湿</option>
+                            </select>
+                            <span id="mode-status" class="status-indicator">未知</span>
+                        </div>
+                        <div class="control-group">
+                            <label for="temp-slider">温度 (°C):</label>
+                            <input type="range" id="temp-slider" min="16" max="30" step="1" class="control-slider">
+                            <span id="temp-value" class="slider-value">--</span>
+                        </div>
+                         <div class="control-group">
+                            <label for="fan-speed-select">风速:</label>
+                            <select id="fan-speed-select" class="control-select">
+                                <option value="auto">自动</option>
+                                <option value="low">低</option>
+                                <option value="medium">中</option>
+                                <option value="high">高</option>
+                            </select>
+                            <span id="fan-speed-status" class="status-indicator">未知</span>
+                        </div>
+                        <!-- 可以添加更多控制，如风向等 -->
+                    </div>
+
+                    <!-- 右侧：状态显示与图表 -->
+                    <div class="status-and-chart">
+                        <h2>状态与数据</h2>
+                         <div class="status-display">
+                            <p>当前室内温度: <span id="current-temp">--</span> °C</p>
+                            <p>当前设定温度: <span id="set-temp">--</span> °C</p>
+                            <p>运行模式: <span id="current-mode">未知</span></p>
+                            <p>风速: <span id="current-fan-speed">未知</span></p>
+                            <p>设备状态: <span id="device-status">未知</span></p>
+                            <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                         </div>
+                         <div class="chart-container">
+                              <h3>历史温度</h3>
+                              <canvas id="temperature-chart"></canvas>
+                              <p id="chart-loading-msg">正在加载图表数据...</p>
+                         </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <footer id="app-footer"></footer>
+
+    <!-- 引入图表库 JS, e.g., Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_ac.js"></script> <!-- 新增设备控制页专属 JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            insertHeader();
+            insertFooter();
+            // 初始化设备控制逻辑 (将在 device_control_ac.js 中实现)
+            if (typeof initializeAcControl === 'function') {
+                initializeAcControl();
+            } else {
+                 console.error('initializeAcControl function not found.');
+                 // 显示错误信息给用户
+                const mainContent = document.querySelector('.device-control-container');
+                if(mainContent) {
+                    mainContent.innerHTML = '<p style="color: red;">页面脚本加载失败，无法控制设备。</p>' + mainContent.innerHTML; // 保留返回链接
+                }
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,475 @@
+/* public/css/device_control.css - Revamped for consistency */
+
+/* === Base & Layout Inheritance === */
+/* Assumes base.css, layout.css, components.css are loaded first */
+
+/* Use the standard container padding/margin/shadow */
+.device-control-container.main-content-area {
+    /* Inherits from layout.css */
+    max-width: 1100px; /* Keep consistent max-width */
+    padding: 30px 40px;
+    margin: 40px auto;
+}
+
+/* Header - Reuse standard header, potentially overridden by sharedComponents.js */
+/* If using shared header, styles below might be redundant */
+.control-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color-light);
+    padding-bottom: 15px;
+}
+
+.control-header h1 {
+    margin: 0;
+    font-size: 1.8em; /* Match layout.css */
+    color: var(--header-text); /* Use header text color */
+    flex-grow: 1;
+    text-align: center;
+}
+
+/* Back link styling - Match components.css secondary button */
+.back-link {
+    padding: 8px 18px;
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+    border: 1px solid var(--border-color-medium);
+    border-radius: 20px;
+    font-size: 0.95em;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.back-link:hover {
+    background-color: var(--button-secondary-hover-bg);
+    border-color: var(--border-color-dark);
+    text-decoration: none;
+}
+
+/* === Main Control Layout Grid === */
+.control-layout {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Responsive columns */
+    gap: 30px;
+}
+
+/* === Panels (Cards) === */
+.control-panel,
+.status-and-chart,
+.status-panel /* Added for consistency */
+{
+    /* Reuse card styles from components.css or define consistently */
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color-light);
+    border-radius: 14px; /* Match scene button radius */
+    padding: 25px 30px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.control-panel h2,
+.status-and-chart h2,
+.status-panel h2
+{
+    margin-top: 0;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--border-color-medium);
+    font-size: 1.4em;
+    color: var(--text-primary);
+}
+
+/* === Control Groups (Label + Control + Status) === */
+.control-group {
+    display: grid;
+    grid-template-columns: auto 1fr auto; /* Label, Control, Status */
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px dashed var(--border-color-light);
+}
+
+.control-group:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.control-group label {
+    font-weight: 500;
+    color: var(--text-secondary);
+    padding-right: 10px; /* Space after label */
+    grid-column: 1 / 2;
+    white-space: nowrap;
+}
+
+.control-group .control-button,
+.control-group .control-select,
+.control-group .control-slider,
+.control-group .slider-container /* Target the container for range */
+{
+    grid-column: 2 / 3;
+    justify-self: stretch; /* Make control take full width of column */
+}
+
+.control-group .status-indicator,
+.control-group .slider-value {
+    grid-column: 3 / 4;
+    font-weight: 600;
+    color: var(--text-accent);
+    text-align: right;
+    font-size: 0.95em;
+    white-space: nowrap;
+}
+
+/* === Individual Controls - Refined Styles === */
+
+/* Buttons */
+.control-button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 500;
+    transition:
+        background-color 0.3s ease,
+        transform 0.1s ease;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: auto; /* Don't force full width unless needed */
+    min-width: 90px; /* Ensure minimum clickable area */
+}
+.control-button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-1px);
+}
+.control-button:active {
+    transform: translateY(0px);
+}
+.control-button:disabled {
+    background-color: var(--button-secondary-bg);
+    color: var(--text-muted);
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Toggle Button */
+.toggle-button .button-icon::before { /* Assuming .button-icon exists */
+    content: '\2717'; /* X */
+    display: inline-block;
+    width: 1em;
+    text-align: center;
+    color: var(--status-error-text);
+    font-size: 1.1em;
+    line-height: 1;
+}
+.toggle-button.on .button-icon::before {
+    content: '\2713'; /* Checkmark */
+    color: var(--status-ok-text);
+}
+/* Revisit toggle button state appearance if needed */
+.toggle-button.on {
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+}
+.toggle-button.on:hover {
+    background-color: var(--button-secondary-hover-bg);
+}
+
+/* Stop Button */
+.stop-button {
+    background-color: var(--status-error-bg);
+    color: var(--status-error-text);
+    font-weight: 600;
+}
+.dark-theme .stop-button:hover {
+     background-color: color-mix(in srgb, var(--status-error-bg) 85%, black);
+}
+.light-theme .stop-button:hover {
+    background-color: color-mix(in srgb, var(--status-error-bg) 85%, white);
+}
+
+/* Select Dropdown */
+.control-select {
+    padding: 8px 12px;
+    border: 1px solid var(--border-color-medium);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
+    font-size: 0.95em;
+    cursor: pointer;
+    width: 100%; /* Make select take full column width */
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.control-select:hover { border-color: var(--border-color-dark); }
+.control-select:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 2px color-mix(in srgb, var(--input-focus-border) 20%, transparent);
+}
+.control-select:disabled {
+    background-color: var(--border-color-light);
+    color: var(--text-muted);
+    cursor: not-allowed;
+}
+
+/* Slider */
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Reduce gap slightly */
+    width: 100%;
+}
+input[type="range"].control-slider {
+    flex-grow: 1;
+    cursor: pointer;
+    accent-color: var(--text-accent);
+    background: transparent; /* Remove default background */
+    height: 8px;
+    border-radius: 4px;
+    outline: none;
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    vertical-align: middle;
+    transition: opacity 0.2s;
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    background-color: var(--border-color-medium); /* Track background */
+}
+/* Slider Thumb */
+input[type="range"].control-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    background: var(--text-accent);
+    border-radius: 50%;
+    cursor: pointer;
+}
+input[type="range"].control-slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    background: var(--text-accent);
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+input[type="range"].control-slider:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+input[type="range"].control-slider:disabled::-webkit-slider-thumb {
+    background: var(--text-muted);
+}
+input[type="range"].control-slider:disabled::-moz-range-thumb {
+    background: var(--text-muted);
+}
+
+.slider-value {
+    /* Style inherited from .control-group */
+     min-width: 45px; /* Adjust as needed */
+}
+
+/* === Status Display Panel === */
+.status-display p {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline; /* Align text baselines */
+    padding: 8px 0;
+    margin: 0 0 8px 0; /* Consistent margin */
+    border-bottom: 1px dashed var(--border-color-light);
+    font-size: 1em;
+    line-height: 1.5;
+}
+.status-display p:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+.status-display p > span:first-of-type {
+   color: var(--text-secondary);
+   margin-right: 15px;
+}
+.status-display p > span:last-of-type {
+    font-weight: 600;
+    color: var(--text-primary);
+    text-align: right;
+    word-break: break-word; /* Prevent long status overflow */
+}
+.status-display .last-updated {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid var(--border-color-medium);
+    text-align: center;
+    font-size: 0.9em;
+    color: var(--text-muted);
+    border-bottom: none; /* Remove double border */
+    justify-content: center; /* Center the content */
+}
+
+/* === Chart & Log Area === */
+.chart-container {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color-medium);
+    position: relative;
+    min-height: 250px;
+}
+.chart-container h3 {
+     margin-bottom: 15px;
+     text-align: center;
+     font-size: 1.2em;
+     color: var(--text-secondary);
+     font-weight: 500;
+}
+#temperature-chart { /* Specific ID for AC/Fridge */
+     display: block;
+     box-sizing: border-box;
+     width: 100% !important;
+     height: 250px !important; /* Maintain fixed height */
+}
+#chart-loading-msg {
+     text-align: center;
+     color: var(--text-muted);
+     font-style: italic;
+}
+
+.activity-log-list {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color-medium);
+    max-height: 300px;
+    overflow-y: auto;
+    list-style: none;
+    padding-left: 0;
+}
+/* .log-item styles remain similar to previous version */
+.log-item { display: flex; align-items: center; padding: 10px 5px; border-bottom: 1px dashed var(--border-color-light); font-size: 0.95em; }
+.log-item:last-child { border-bottom: none; }
+.log-item .log-icon { margin-right: 12px; font-size: 1.2em; color: var(--text-secondary); width: 20px; text-align: center; }
+.log-item .log-message { flex-grow: 1; color: var(--text-primary); }
+.log-item .log-time { color: var(--text-muted); font-size: 0.9em; margin-left: 15px; white-space: nowrap; }
+
+
+/* === Toilet Control Grid Specifics === */
+.control-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Adjust min size if needed */
+    gap: 15px;
+    padding-top: 10px; /* Add some padding above grid */
+}
+
+/* Override control group for grid items */
+.control-grid .control-group {
+    display: contents; /* Let grid items flow directly into the grid */
+}
+
+/* Style buttons within the grid */
+.control-grid .control-button {
+    grid-column: auto !important; /* Override control group placement */
+    flex-direction: column;
+    padding: 12px 8px;
+    font-size: 0.9em;
+    height: auto;
+    min-height: 85px; /* Slightly taller */
+    justify-content: center;
+    text-align: center;
+    width: 100%; /* Make button fill grid cell */
+}
+
+.control-grid .control-button .button-icon {
+    font-size: 1.8em;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.control-grid .toggle-button .button-icon::before {
+     font-size: 1.1em; /* Adjust size if needed */
+     margin-bottom: 0;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .device-control-container.main-content-area {
+        padding: 20px 15px;
+        margin: 20px auto;
+    }
+    .control-layout {
+        grid-template-columns: 1fr; /* Stack panels */
+    }
+    .control-header {
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        flex-wrap: wrap; /* Allow wrapping */
+        justify-content: center; /* Center items when wrapped */
+        gap: 10px;
+    }
+     .control-header h1 {
+         font-size: 1.5em;
+         order: 1; /* Ensure title is first when wrapped potentially */
+         width: 100%;
+         text-align: center;
+     }
+    .back-link {
+        order: 2;
+    }
+    .control-group {
+        grid-template-columns: auto 1fr; /* Label, Control+Status */
+        gap: 8px 12px;
+    }
+    .control-group label {
+        grid-row: 1 / 2; grid-column: 1 / 2;
+    }
+    .control-group .control-button,
+    .control-group .control-select,
+    .control-group .control-slider,
+    .control-group .slider-container {
+        grid-row: 2 / 3; grid-column: 1 / 3; /* Span both columns below label */
+    }
+     .control-group .status-indicator,
+     .control-group .slider-value {
+         grid-row: 1 / 2; grid-column: 2 / 3; /* Status next to label */
+         font-size: 0.9em;
+     }
+    .control-grid {
+         grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+    }
+} 
+
+/* 新增：用于垂直排列控制元素的容器 */
+.vertical-control-layout {
+    display: flex;
+    flex-direction: column; /* 子元素垂直排列 */
+    align-items: flex-start; /* 左对齐 */
+    gap: 5px; /* 元素之间的垂直间距 */
+    width: 100%; /* 占据父容器宽度 */
+}
+
+/* 如果需要，可以调整 control-group 内label和新布局容器的对齐方式 */
+.control-group label {
+    /* 可能需要调整 margin 或 padding 以适应新布局 */
+}
+
+/* 可以为垂直布局下的按钮设置特定样式，例如统一宽度 */
+.vertical-control-layout .control-button {
+     /* width: 100%; */ /* 如果希望按钮占满宽度 */
+     /* margin-bottom: 5px; */ /* 按钮之间的间距 */
+} 

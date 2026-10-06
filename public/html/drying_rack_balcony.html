@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>晾衣杆控制 - 阳台</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+</head>
+<body data-device-type="drying_rack" data-scene="balcony">
+    <!-- Main Content -->
+    <div class="device-control-container main-content-area">
+        <!-- Header -->
+        <header class="control-header">
+            <h1 id="device-name">阳台晾衣杆</h1>
+            <a href="balcony.html" class="back-link">&larr; 返回阳台</a>
+        </header>
+
+        <main class="control-layout">
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2>设备控制</h2>
+                 <!-- Using control-grid for button layout -->
+                <div class="control-grid">
+                    <button id="move-up-button" class="control-button">
+                        <span class="button-icon">⬆️</span>
+                        上升
+                    </button>
+                    <button id="move-down-button" class="control-button">
+                        <span class="button-icon">⬇️</span>
+                        下降
+                    </button>
+                    <button id="stop-button" class="control-button stop-button">
+                        <span class="button-icon">🛑</span>
+                        停止
+                    </button>
+                    <button id="light-toggle" class="control-button toggle-button">
+                        <span class="button-icon">💡</span>
+                        <span class="button-text">开启照明</span>
+                    </button>
+                    <button id="fan-toggle" class="control-button toggle-button">
+                        <span class="button-icon">🌬️</span>
+                        <span class="button-text">开启风干</span>
+                    </button>
+                     <button id="disinfect-toggle" class="control-button toggle-button">
+                        <span class="button-icon">☀️</span> <!-- Using sun for disinfect -->
+                        <span class="button-text">开启消毒</span>
+                    </button>
+                </div>
+                <span id="control-feedback" class="status-indicator" style="display: block; text-align: center; margin-top: 15px;"></span>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="status-panel">
+                <h2>设备状态</h2>
+                <div class="status-display">
+                    <p><span>当前位置:</span> <span id="position-status">未知</span></p>
+                    <p><span>照明状态:</span> <span id="light-status">关</span></p>
+                    <p><span>风干状态:</span> <span id="fan-status">关</span></p>
+                    <p><span>消毒状态:</span> <span id="disinfect-status">关</span></p>
+                    <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_drying_rack.js"></script> <!-- Placeholder for specific JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+             if (typeof insertFooter === 'function') insertFooter();
+
+            // Initialize drying rack control logic
+            if (typeof initializeDryingRackControl === 'function') {
+                initializeDryingRackControl();
+            } else {
+                 console.error('initializeDryingRackControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                     const feedbackSpan = document.getElementById('control-feedback');
+                     if (feedbackSpan) {
+                        feedbackSpan.textContent = '页面脚本加载失败，无法控制设备。';
+                        feedbackSpan.style.color = 'red';
+                     } else {
+                        mainContent.insertAdjacentHTML('afterbegin', '<p style="color: red; text-align: center;">页面脚本加载失败。</p>');
+                     }
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

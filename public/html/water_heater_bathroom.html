@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>热水器控制 - 卫生间</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+</head>
+<body data-device-type="water_heater" data-scene="bathroom">
+    <!-- Main Content -->
+    <div class="device-control-container main-content-area">
+        <!-- Header - Moved inside container and elements reordered -->
+        <header class="control-header">
+            <h1 id="device-name">卫生间热水器</h1>
+            <a href="bathroom.html" class="back-link">&larr; 返回卫生间</a>
+        </header>
+
+        <main class="control-layout"> <!-- Grid layout for panels -->
+            <!-- Control Panel -->
+            <div class="control-panel">
+                <h2>设备控制</h2>
+                <div class="control-group">
+                    <label>电源:</label>
+                    <button id="power-switch" class="control-button toggle-button">
+                        <span class="button-icon"></span>
+                        <span class="button-text">开启</span>
+                    </button>
+                    <!-- Status indicator might be added here if needed -->
+                </div>
+                <div class="control-group">
+                    <label for="target-temp-slider">目标温度:</label>
+                    <div class="slider-container">
+                        <input type="range" id="target-temp-slider" min="40" max="75" step="1" value="45" class="control-slider">
+                    </div>
+                    <span id="target-temp-value" class="slider-value">45</span> °C
+                </div>
+                <div class="control-group">
+                    <label for="mode-select">模式选择:</label>
+                    <select id="mode-select" class="control-select">
+                        <option value="auto">自动</option>
+                        <option value="manual">手动</option>
+                        <option value="eco">节能</option>
+                    </select>
+                    <span id="mode-status" class="status-indicator">--</span>
+                </div>
+            </div>
+
+            <!-- Status Panel -->
+            <div class="status-panel">
+                <h2>设备状态</h2>
+                <div class="status-display">
+                    <p id="status-display-p"><span>当前状态:</span> <span class="value">加载中...</span></p>
+                    <p id="current-temp-display-p"><span>当前水温:</span> <span class="value">-- °C</span></p>
+                    <p id="target-temp-display-p"><span>设定温度:</span> <span class="value">-- °C</span></p>
+                    <p id="mode-display-p"><span>当前模式:</span> <span class="value">--</span></p>
+                    <p class="last-updated">最后更新: <span id="last-updated">--:--</span></p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer can be inserted by JS or be static -->
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script> <!-- Assuming header/footer insertion -->
+    <script src="../js/device_control_water_heater.js"></script>
+    <script>
+        // Optional: Initialize header/footer if using shared components
+        // document.addEventListener('DOMContentLoaded', () => {
+        //     if (typeof insertHeader === 'function') insertHeader();
+        //     if (typeof insertFooter === 'function') insertFooter();
+        // });
+    </script>
+</body>
+</html> 

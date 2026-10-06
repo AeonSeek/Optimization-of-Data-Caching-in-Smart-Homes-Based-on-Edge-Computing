@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>智能家居系统 - 主界面</title>
+        <link rel="stylesheet" href="../css/base.css" />
+        <link rel="stylesheet" href="../css/layout.css" />
+        <link rel="stylesheet" href="../css/components.css" />
+        <link rel="stylesheet" href="../css/responsive.css" />
+        <link rel="stylesheet" href="../css/assistant.css" />
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> -->
+        <!-- 可以考虑引入天气图标库，例如 Weather Icons -->
+        <!-- <link rel="stylesheet" href="path/to/weather-icons.css"> -->
+    </head>
+    <body>
+        <div id="header-placeholder"></div>
+        <!-- Header Placeholder -->
+
+        <div class="content-wrapper">
+            <main>
+                <div class="main-container index-container main-content-area">
+                    <!-- Top Row: Weather/Rec + System Status -->
+                    <div class="top-info-area">
+                        <!-- 天气和建议区域 -->
+                        <div class="weather-recommendation-area">
+                            <div class="weather-display" id="weather-display">
+                                <!-- 详细天气信息 -->
+                                <p>详细天气载入中...</p>
+                            </div>
+                            <div
+                                class="clothing-recommendation"
+                                id="clothing-recommendation"
+                            >
+                                <!-- 穿衣建议 -->
+                                <p>穿衣建议载入中...</p>
+                            </div>
+                        </div>
+
+                        <!-- 系统状态概览 -->
+                        <div class="system-status-area">
+                            <h2 class="section-title status-title">系统状态</h2>
+                            <div class="status-items-list" id="status-items-list">
+                                <!-- 状态项目将由 JS 加载 -->
+                                <p>状态载入中...</p>
+                                <!-- 示例结构:
+                                <div class="status-item status-ok">
+                                    <span class="status-icon">✔️</span>
+                                    <span class="status-label">网络连接</span>
+                                    <span class="status-value">正常</span>
+                                </div>
+                                 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 快速操作区域 -->
+                    <div class="quick-actions-area">
+                        <h2 class="section-title">快捷操作</h2>
+                        <div class="quick-actions-grid" id="quick-actions-grid">
+                            <!-- 快捷操作按钮将由 JS 或静态 HTML 添加 -->
+                            <p>快捷操作载入中...</p>
+                            <!-- 示例按钮结构:
+                            <button class="quick-action-button" data-device-id="livingroom-main-light">
+                                <span class="qa-icon">💡</span>
+                                <span class="qa-label">客厅主灯</span>
+                                <span class="qa-status">关</span>
+                            </button>
+                             -->
+                        </div>
+                    </div>
+
+                    <!-- 场景区域标题 -->
+                    <h2 class="section-title">我的家</h2>
+
+                    <div class="scene-buttons" id="scene-buttons-grid">
+                        <!-- 场景卡片将由 JS 加载 -->
+                        <p>场景载入中...</p>
+                        <!-- 示例结构:
+                    <a href="livingroom.html" class="scene-card-link" data-scene="livingroom">
+                        <button class="scene-button">
+                            <div class="scene-card-header">
+                                 <span class="button-icon">🛋️</span>
+                                 <span class="scene-status status-ok">● 正常</span>
+                            </div>
+                            <span class="button-text">客厅</span>
+                            <div class="scene-data-summary">
+                                <span class="temp-data">--°C</span>
+                                <span class="humidity-data">--%</span>
+                            </div>
+                        </button>
+                    </a>
+                     -->
+                    </div>
+
+                    <!-- 最近活动记录 -->
+                    <div class="activity-log-area">
+                        <h2 class="section-title">最近活动</h2>
+                        <div class="activity-log-list" id="activity-log-list">
+                            <p>活动记录载入中...</p>
+                            <!-- 示例结构:
+                            <div class="log-item">
+                                <span class="log-icon">💡</span>
+                                <span class="log-message">客厅主灯已开启</span>
+                                <span class="log-time">下午 6:30</span>
+                            </div>
+                            -->
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+
+            <!-- AI Assistant Floating Button -->
+            <button id="assistant-toggle-button" class="assistant-fab">💬</button>
+
+            <!-- AI Assistant Chat Panel -->
+            <div id="assistant-chat-panel" class="assistant-panel">
+                <div class="assistant-header">
+                    <span>AI 助手</span>
+                    <button id="assistant-close-button" class="assistant-close-btn">&times;</button>
+                </div>
+                <div id="assistant-messages" class="assistant-messages"></div>
+                <div class="assistant-input-area">
+                    <input type="text" id="assistant-input" placeholder="输入消息或点击麦克风...">
+                    <button id="assistant-send-button">></button>
+                    <button id="assistant-mic-button">🎤</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Template for Scene Card -->
+        <template id="scene-card-template">
+            <a href="#" class="scene-card-link" data-scene="">
+                <button class="scene-button">
+                    <div class="scene-card-header">
+                        <span class="button-icon"></span>
+                        <span class="scene-status">● <span></span></span>
+                    </div>
+                    <span class="button-text"></span>
+                    <div class="scene-data-summary">
+                        <span class="temp-data">--°C</span>
+                        <span class="humidity-data">--%</span>
+                    </div>
+                </button>
+            </a>
+        </template>
+
+        <footer id="app-footer"></footer>
+
+        <script src="../js/theme.js"></script>
+        <!-- Theme initialization -->
+        <script src="../js/sharedComponents.js"></script>
+        <!-- Shared components loader -->
+        <script src="../js/index.js"></script>
+        <script src="../js/assistant.js"></script>
+        <script>
+            // Insert the header after DOM is ready and scripts are loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                insertHeader();
+                insertFooter();
+            });
+        </script>
+    </body>
+</html>

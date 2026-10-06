@@ -1,0 +1,150 @@
+/* public/css/assistant.css */
+
+/* ==========================================
+   AI Assistant Styles
+   ========================================== */
+
+.assistant-fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.assistant-fab:hover {
+    background-color: var(--primary-color-dark);
+}
+
+.assistant-panel {
+    position: fixed;
+    bottom: 100px; /* Position above the FAB */
+    right: 30px;
+    width: 350px;
+    max-height: 500px;
+    background-color: var(--card-bg); /* Use card bg for opacity */
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    z-index: 1001;
+    overflow: hidden;
+    display: none; /* Initially hidden */
+}
+
+.assistant-panel.visible {
+    display: flex;
+}
+
+.assistant-header {
+    padding: 10px 15px;
+    background-color: var(--secondary-background-color);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    color: var(--text-color-strong);
+}
+
+.assistant-close-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text-color-light);
+}
+
+.assistant-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background-color: var(--background-color-light); /* Keep light bg for messages */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Basic message styling (can be expanded) */
+.assistant-message {
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background-color: var(--primary-color);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+}
+
+.ai-message {
+    background-color: var(--secondary-background-color);
+    color: var(--text-color);
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+}
+
+.assistant-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--secondary-background-color);
+}
+
+#assistant-input {
+    flex-grow: 1;
+    padding: 8px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+#assistant-send-button,
+#assistant-mic-button {
+    padding: 8px 12px;
+    border: none; /* Removed debug border */
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: white;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.3s ease;
+    min-width: 40px;
+    text-align: center;
+    position: relative; /* Keep for potential overlap issues, but z-index likely not needed */
+    /* z-index: 1; /* Removed debug z-index */
+}
+
+#assistant-send-button:hover,
+#assistant-mic-button:hover {
+    background-color: var(--primary-color-dark);
+}
+
+#assistant-mic-button.recording {
+    background-color: #dc3545; /* Red when recording */
+}
+
+/* Style for error/info messages in chat */
+.info-message-chat {
+    font-style: italic;
+    color: var(--text-color-light);
+    font-size: 0.9em;
+    text-align: center;
+    margin: 5px 0;
+} 
