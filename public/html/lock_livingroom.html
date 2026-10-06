@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>客厅门锁 - 智能家居控制</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+    <style>
+        /* Specific styles for lock */
+        .lock-status-indicator {
+            font-size: 2em; /* Make status icon larger */
+            padding: 15px;
+            border-radius: 50%;
+            display: inline-block;
+            line-height: 1;
+            margin-bottom: 15px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        .lock-status-locked { background-color: #f8d7da; color: #721c24; } /* Reddish */
+        .lock-status-unlocked { background-color: #d4edda; color: #155724; } /* Greenish */
+        .lock-status-jammed { background-color: #fff3cd; color: #856404; } /* Yellowish */
+        .lock-status-unknown { background-color: #e2e3e5; color: #383d41; } /* Greyish */
+
+        .lock-buttons button {
+            padding: 15px 25px;
+            font-size: 1.1em;
+        }
+         .activity-log-container { margin-top: 30px; }
+         .activity-log-list { list-style: none; padding: 0; max-height: 200px; overflow-y: auto; border: 1px solid var(--border-color-light); border-radius: 4px; padding: 10px; }
+         .activity-log-list li { margin-bottom: 8px; padding-bottom: 8px; border-bottom: 1px dashed var(--border-color-light); font-size: 0.9em; color: var(--text-secondary); }
+         .activity-log-list li:last-child { border-bottom: none; margin-bottom: 0; }
+         .log-time { font-weight: bold; color: var(--text-primary); margin-right: 8px; }
+         .log-event { }
+
+    </style>
+</head>
+<body data-device-type="lock" data-scene="livingroom">
+    <div id="header-placeholder"></div>
+
+    <div class="content-wrapper">
+        <main>
+            <div class="device-control-container main-content-area">
+                <div class="control-header">
+                    <h1 id="device-name">客厅门锁</h1>
+                    <a href="livingroom.html" class="back-link">&larr; 返回客厅</a>
+                </div>
+
+                <div class="control-layout">
+                    <!-- 左侧：控制与状态 -->
+                    <div class="control-panel" style="text-align: center;">
+                        <h2>状态与控制</h2>
+                        <div id="lock-status-visual" class="lock-status-indicator lock-status-unknown">?</div>
+                        <p id="lock-status-text" style="font-weight: bold; margin-bottom: 20px;">状态未知</p>
+                        <div class="control-group lock-buttons" style="justify-content: center;">
+                            <button id="lock-button" class="control-button">上锁</button>
+                            <button id="unlock-button" class="control-button">解锁</button>
+                        </div>
+                        <p id="battery-status" style="margin-top: 20px; color: var(--text-muted);">电池: --%</p>
+                        <span id="control-status" class="status-indicator" style="text-align: center; margin-top: 10px;"></span>
+                    </div>
+
+                    <!-- 右侧：活动日志 -->
+                    <div class="status-and-chart">
+                        <h2>活动日志</h2>
+                        <div class="activity-log-container">
+                             <ul id="activity-log-list">
+                                 <li id="log-loading-msg">正在加载日志...</li>
+                                 <!-- Log items will be added here -->
+                             </ul>
+                        </div>
+                         <p class="last-updated" style="text-align: right; margin-top: 15px;"><small>状态更新时间: <span id="last-updated-time">--</span></small></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer id="app-footer"></footer>
+
+    <!-- No Chart.js needed -->
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_lock.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            insertHeader();
+            insertFooter();
+            if (typeof initializeLockControl === 'function') {
+                initializeLockControl();
+            } else {
+                 console.error('initializeLockControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                    mainContent.innerHTML = '<p style="color: red;">页面脚本加载失败，无法控制设备。</p>' + mainContent.innerHTML;
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

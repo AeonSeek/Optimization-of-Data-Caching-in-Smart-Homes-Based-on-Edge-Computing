@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>阳台 - 智能家居系统</title>
+        <!-- <link rel="stylesheet" href="../css/style.css"> REMOVED -->
+        <link rel="stylesheet" href="../css/base.css" />
+        <link rel="stylesheet" href="../css/layout.css" />
+        <link rel="stylesheet" href="../css/components.css" />
+        <link rel="stylesheet" href="../css/responsive.css" />
+        <link rel="stylesheet" href="../css/scene.css" />
+    </head>
+    <body data-scene="balcony">
+        <!-- 标识为阳台 -->
+        <div id="header-placeholder"></div>
+        <!-- Header Placeholder -->
+
+        <div class="content-wrapper">
+            <div class="scene-content-container main-content-area">
+                <h1 id="scene-title">阳台</h1>
+
+                <!-- 场景模式区域 -->
+                <div class="scene-modes-area">
+                    <div class="scene-modes-grid">
+                        <button class="scene-mode-button" data-mode="drying">晾晒</button>
+                        <button class="scene-mode-button" data-mode="laundry">洗衣</button>
+                        <!-- 阳台示例场景模式按钮 -->
+                    </div>
+                </div>
+
+                <div id="device-list" class="device-list">
+                    <p>正在加载设备数据...</p>
+                </div>
+
+                <!-- Added back button consistent with livingroom.html -->
+                <a href="index.html"> 
+                    <button id="back-button">返回主界面</button> 
+                </a>
+
+            </div>
+        </div>
+
+        <footer id="app-footer"></footer>
+
+        <!-- Template for Device Card -->
+        <template id="device-card-template">
+            <div class="device">
+                <div class="device-icon"><span></span></div>
+                <div class="device-info">
+                    <h3></h3>
+                    <p class="device-status"></p>
+                </div>
+                <div class="device-details">
+                    <!-- Details will be added here -->
+                    <p class="last-updated">
+                        <small>更新: <span></span></small>
+                    </p>
+                </div>
+            </div>
+        </template>
+
+        <script src="../js/theme.js"></script>
+        <!-- 引用主題切換 JS -->
+        <script src="../js/sharedComponents.js"></script>
+        <!-- Shared components loader -->
+        <script src="../js/scene.js"></script>
+        <script>
+            // Insert the header after DOM is ready and scripts are loaded
+            document.addEventListener('DOMContentLoaded', () => {
+                insertHeader();
+                insertFooter();
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,121 @@
+/* === Media Queries === */
+@media (max-width: 992px) {
+    /* Layout Adjustments */
+    .app-header .container {
+        padding: 0 25px;
+    }
+    .header-weather {
+        right: 80px;
+        font-size: 0.9em;
+    }
+    .theme-toggle-button {
+        right: 25px;
+    }
+    .scene-content-container .device-list {
+        gap: 20px;
+    }
+
+    /* Component Adjustments */
+    .app-header h1 {
+        font-size: 1.6em;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Layout Adjustments */
+    .scene-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    /* Component Adjustments */
+    /* (None specific to this breakpoint currently) */
+}
+
+@media (max-width: 600px) {
+    /* Layout Adjustments */
+    .app-header .container {
+        padding: 0 15px;
+    }
+    .header-weather {
+        right: 60px;
+        font-size: 0.8em;
+    }
+    .theme-toggle-button {
+        right: 15px;
+        font-size: 1.1em;
+        padding: 4px 7px;
+    }
+    .main-content-area {
+        width: 95%;
+        padding: 20px 25px;
+        border-radius: 12px;
+    }
+    .index-container {
+        padding: 20px 5%; /* Specific padding override */
+    }
+    .weather-recommendation-area {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .scene-buttons {
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 15px;
+    }
+    .scene-content-container #scene-title {
+        font-size: 1.6em;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+    .scene-content-container .device-list {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+    .section-title {
+        font-size: 1.3em;
+    }
+
+    /* Component Adjustments */
+    .app-header h1 {
+        font-size: 1.4em;
+        max-width: calc(100% - 130px);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+    }
+    button {
+        padding: 10px 18px;
+        font-size: 0.95em;
+    }
+    .scene-button {
+        padding: 15px;
+        min-height: 140px;
+    }
+    .button-icon {
+        font-size: 2em;
+    }
+    .button-text {
+        font-size: 0.95em;
+    }
+    .scene-data-summary {
+        font-size: 0.8em;
+    }
+    .device {
+        padding: 15px;
+        min-height: auto;
+    }
+    .device-icon {
+        font-size: 1.8em;
+        margin-bottom: 10px;
+    }
+    .device-info h3 {
+        font-size: 1em;
+    }
+    .device-status {
+        font-size: 0.85em;
+    }
+    .device-details {
+        font-size: 0.8em;
+    }
+}

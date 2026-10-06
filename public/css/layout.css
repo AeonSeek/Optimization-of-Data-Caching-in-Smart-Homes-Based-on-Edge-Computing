@@ -1,0 +1,325 @@
+/* === Header === */
+.app-header {
+    background-color: var(--header-bg);
+    padding: 15px 0;
+    box-shadow: 0 2px 5px var(--shadow-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+}
+
+.app-header .container {
+    /* padding: 0 40px; /* Remove horizontal padding */
+    width: 95%; /* Match content width */
+    margin: 0 auto; /* Center the container */
+    box-shadow: none;
+    background: none;
+    /* text-align: left; /* Remove text-align, flex handles it */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically center items */
+    max-width: 1200px; /* Keep max-width constraint */
+    position: relative; /* Keep relative for potential absolute children if needed, though weather is now flex */
+    min-height: 50px;
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    color: var(--header-text);
+    display: inline-block;
+}
+
+/* Header Weather - Positioning */
+.header-weather {
+    /* position: absolute; */ /* Remove absolute positioning */
+    /* right: 100px; */
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
+    margin-left: auto; /* Push weather and subsequent elements to the right */
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 15px; /* Add some space before the theme toggle button */
+}
+
+/* Add style for theme toggle button if needed, ensure it's positioned correctly */
+/* Since it's now a flex item after .header-weather (with margin-left: auto), */
+/* it should be positioned to the far right, after the weather */
+.theme-toggle-button {
+    /* Basic styling, adjust as needed */
+    background: none;
+    border: 1px solid var(--border-color-medium);
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 5px;
+    display: flex; /* Ensure icons inside are aligned */
+    align-items: center;
+    justify-content: center;
+    width: 36px; /* Example size */
+    height: 36px; /* Example size */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.theme-toggle-button:hover {
+    background-color: var(--button-hover-bg);
+}
+/* Hide one icon based on theme */
+body:not(.dark-theme) .theme-toggle-button .icon-moon { display: none; }
+body.dark-theme .theme-toggle-button .icon-sun { display: none; }
+body.dark-theme .theme-toggle-button {
+    border-color: var(--border-color-medium); /* Ensure border color adapts */
+}
+
+/* === Containers Layout === */
+/* General container for main content areas */
+.main-content-area {
+    background-color: var(--container-bg);
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 6px 25px var(--shadow-color);
+    width: 90%;
+    margin: 40px auto; /* Default margin, can be overridden */
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Specific container layout overrides and alignment */
+.login-container {
+    max-width: 450px;
+    margin: auto; /* Override default margin for flex centering */
+    text-align: center; /* Keep center alignment */
+    /* Login page specific styles */
+    background-color: var(--container-bg); /* Needs its own bg */
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 6px 25px var(--shadow-color);
+    transition:
+        background-color 0.3s ease,
+        box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Add margin below each form group in the login container */
+.login-container .form-group {
+    margin-bottom: 18px; /* Adjust this value as needed for spacing */
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Vertically align label and input */
+}
+
+.index-container {
+    /* Inherits common styles from .main-content-area */
+    max-width: none; /* Allow index container to be wider */
+    width: 95%; /* Override width */
+    padding: 30px 3%; /* Override padding */
+    text-align: left; /* Override text-align */
+}
+
+.scene-content-container {
+    /* Inherits common styles from .main-content-area */
+    max-width: 1100px; /* Specific max-width for scenes */
+    text-align: left; /* Override text-align */
+}
+
+/* === Page Specific Layouts === */
+
+/* Login Page Flex Layout */
+body[data-page='login'] {
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-top: 0;
+}
+
+/* Override content wrapper flex behavior specifically for login page to maintain centering */
+body[data-page='login'] .content-wrapper {
+    flex: none; /* Reset flex behavior */
+}
+
+/* Scene Page Layout (Title, List, Button) */
+.scene-content-container #scene-title {
+    padding: 0 0 15px 0;
+    box-sizing: border-box;
+    font-size: 2em;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color-light);
+    text-align: left;
+    margin: 0 0 30px 0;
+}
+
+/* Scene Modes Area Layout */
+.scene-modes-area {
+    margin-bottom: 30px; /* Space below scene modes */
+    padding-bottom: 20px; /* Space before device list */
+    border-bottom: 1px solid var(--border-color-light); /* Separator */
+}
+
+.scene-modes-grid {
+    display: flex;
+    flex-wrap: wrap; /* Allow buttons to wrap */
+    gap: 15px; /* Space between buttons */
+}
+
+.scene-content-container .device-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    margin-bottom: 40px;
+    padding: 0;
+}
+
+.scene-content-container > a[href='index.html'] {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
+/* Top Info Area Layout (Weather + System Status) */
+.top-info-area {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 30px; /* Space between weather and status areas */
+    margin-bottom: 35px;
+}
+
+/* Adjust existing weather area to be flex item */
+.weather-recommendation-area {
+    flex: 2; /* Weather area takes more space */
+    min-width: 300px; /* Minimum width before wrapping */
+    margin-bottom: 0; /* Remove bottom margin since parent has it */
+}
+
+/* System Status Area Layout */
+.system-status-area {
+    flex: 1; /* Status area takes less space */
+    min-width: 250px; /* Minimum width */
+    background-color: var(--weather-area-bg); /* Consistent background */
+    padding: 25px 30px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color-light);
+    box-sizing: border-box;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.status-title {
+    margin-bottom: 20px; /* Space below title */
+    padding-bottom: 10px; /* Space below title underline */
+    border-bottom: 1px solid var(--border-color-medium); /* Title underline */
+    text-align: left;
+    font-size: 1.2em; /* Slightly smaller title */
+    margin-top: 0;
+    cursor: pointer; /* Add pointer cursor */
+    position: relative; /* For positioning indicator */
+}
+
+/* Add a small indicator arrow */
+.status-title::after {
+    content: '▶'; /* Collapsed indicator */
+    font-size: 0.7em;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: transform 0.3s ease-out;
+}
+
+.system-status-area.expanded .status-title::after {
+    transform: translateY(-50%) rotate(90deg); /* Expanded indicator */
+}
+
+.status-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between status items */
+    transition: max-height 0.3s ease-out, opacity 0.3s ease-out, margin-top 0.3s ease-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    margin-top: 0; /* No margin when collapsed */
+}
+
+.status-items-list.expanded {
+    max-height: 500px; /* Adjust based on potential content height */
+    opacity: 1;
+    margin-top: 15px; /* Restore gap when expanded */
+}
+
+/* Quick Actions Area Layout */
+.quick-actions-area {
+    margin-bottom: 35px; /* Add space below quick actions */
+}
+
+.quick-actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Smaller buttons than scenes */
+    gap: 15px; /* Slightly smaller gap */
+    padding: 0 15px; /* Match scene buttons padding */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Scene Buttons Grid Layout (My Home section) - Re-added */
+.scene-buttons {
+    margin: 0 auto; /* Center grid if possible, or adjust padding */
+    padding: 0 15px; /* Consistent padding */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid */
+    gap: 25px; /* Space between scene buttons */
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* Activity Log Area Layout */
+.activity-log-area {
+    margin-top: 35px; /* Space above activity log */
+}
+
+.activity-log-list {
+    /* List container - specific item styling in components.css */
+    max-height: 300px; /* Limit height and allow scrolling if needed */
+    overflow-y: auto; /* Add scrollbar if content exceeds max-height */
+    padding: 0 15px; /* Padding inside the list */
+}
+
+/* === Footer === */
+#app-footer {
+    background-color: var(--container-bg); /* Match container background */
+    color: var(--text-muted);
+    padding: 20px 0;
+    margin-top: 50px; /* Add space above the footer */
+    border-top: 1px solid var(--border-color-light);
+    text-align: center;
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box; /* Include padding in width */
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Theme transition */
+    flex-shrink: 0; /* Prevent footer from shrinking */
+}
+
+#app-footer .footer-container p {
+    margin: 0;
+}
+
+/* === Sticky Footer Setup === */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Ensure body padding/margin doesn't interfere, if any */
+    /* margin: 0; REMOVED - already set in base.css */
+}
+
+/* Wrapper for main content to push footer down */
+.content-wrapper {
+    flex: 1 0 auto; /* Allow grow, prevent shrink, auto basis - Re-added for sticky footer */
+    /* Ensures wrapper doesn't try to grow unnecessarily */
+}

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卫生间灯 - 智能家居控制</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+</head>
+<body data-device-type="light" data-scene="bathroom">
+    <!-- Header - Removed from here -->
+
+    <!-- Main Content -->
+    <div class="device-control-container main-content-area">
+        <!-- Header - Moved inside container and elements reordered -->
+        <header class="control-header">
+            <h1 id="device-name">卫生间灯</h1>
+            <a href="bathroom.html" class="back-link">&larr; 返回卫生间</a>
+        </header>
+
+        <main class="control-layout">
+            <div class="control-panel">
+                <h2>控制</h2>
+                <div class="control-group">
+                    <label>电源:</label>
+                    <button id="power-toggle" class="control-button">切换</button>
+                    <span id="power-status" class="status-indicator">未知</span>
+                </div>
+                 <div class="control-group">
+                    <label for="brightness-slider">亮度 (%):</label>
+                    <input type="range" id="brightness-slider" min="0" max="100" step="1" class="control-slider">
+                    <span id="brightness-value" class="slider-value">--</span>
+                </div>
+                 <span id="control-status" class="status-indicator" style="grid-column: 1 / span 3; text-align: center; margin-top: 10px;"></span>
+            </div>
+
+            <div class="status-and-chart"> <!-- Reusing class, no chart -->
+                <h2>状态</h2>
+                 <div class="status-display">
+                    <p><span>当前状态:</span> <span id="light-status">未知</span></p>
+                    <p><span>当前亮度:</span> <span id="current-brightness">--</span> %</p>
+                    <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                 </div>
+            </div>
+        </main>
+    </div>
+
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_light.js"></script> <!-- Link to light JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            insertHeader();
+            insertFooter();
+            // Initialize light control logic
+            if (typeof initializeLightControl === 'function') {
+                initializeLightControl();
+            } else {
+                 console.error('initializeLightControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                     mainContent.innerHTML = '<p style="color: red;">页面脚本加载失败，无法控制设备。</p>' + mainContent.innerHTML;
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

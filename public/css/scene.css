@@ -1,0 +1,98 @@
+/* public/css/scene.css */
+
+/* 设备列表布局 (应用于 #device-list 或 .device-list) */
+.device-list {
+    display: grid;
+    /* 创建响应式网格布局，卡片最小宽度约 280px */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    gap: 25px; /* 卡片之间的间距 */
+    padding: 0; /* 移除默认内边距，如果需要外边距在容器上设置 */
+    list-style: none; /* 如果是 <ul> */
+    margin-bottom: 30px; /* 列表底部留出空间 */
+}
+
+/* 单个设备卡片样式 */
+.device {
+    background-color: var(--card-bg); /* 使用卡片背景色变量 */
+    border-radius: 12px; /* 圆角 */
+    padding: 20px;
+    box-shadow: var(--card-shadow); /* 使用卡片阴影变量 */
+    border: 1px solid var(--border-color-light);
+    display: flex; /* 使用 flex 布局排列内部元素 */
+    flex-direction: column; /* 垂直排列内容 */
+    gap: 15px; /* 内部元素间距 */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* 过渡效果 */
+    cursor: pointer;
+    overflow: hidden; /* 防止内容溢出 */
+}
+
+.device:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--card-shadow-hover);
+}
+
+/* 设备卡片激活状态 (例如设备开启时) */
+.device.active {
+     border-left: 5px solid var(--accent-color); /* 左侧添加强调色边框 */
+     /* background-color: var(--card-active-bg); /* 可选：改变背景色 */
+}
+
+/* 卡片内部元素布局 */
+.device-icon {
+    font-size: 2.5em; /* 图标大小 */
+    text-align: center;
+    margin-bottom: 5px; /* 图标下方留白 */
+}
+
+.device-info {
+    text-align: center; /* 居中设备名称和状态 */
+}
+
+.device-info h3 {
+    margin: 0 0 5px 0; /* 调整标题边距 */
+    font-size: 1.2em;
+    color: var(--text-primary);
+}
+
+.device-status {
+    font-size: 0.95em;
+    color: var(--text-secondary);
+    min-height: 1.2em; /* 防止状态为空时跳动 */
+}
+
+.device-details {
+    margin-top: auto; /* 将详情推到底部（如果需要）*/
+    padding-top: 15px; /* 详情区域顶部留白 */
+    border-top: 1px solid var(--border-color-lighter);
+    font-size: 0.85em;
+    color: var(--text-muted);
+}
+
+.device-details p {
+    margin: 5px 0;
+    display: flex; /* 让 key 和 value 对齐 */
+    justify-content: space-between; /* key 在左，value 在右 */
+}
+
+.device-details .data-key {
+    color: var(--text-secondary);
+    margin-right: 5px;
+}
+
+.device-details .data-value {
+    font-weight: 500;
+    color: var(--text-primary);
+    text-align: right;
+}
+
+.device-details .last-updated {
+    margin-top: 10px;
+    text-align: right;
+    color: var(--text-muted);
+    font-size: 0.9em;
+    justify-content: flex-end; /* 仅显示更新时间，靠右 */
+}
+
+.device-details .last-updated small {
+   /* 可以添加特定样式 */
+} 

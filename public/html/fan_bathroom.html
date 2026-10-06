@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>卫生间风扇 - 智能家居控制</title>
+    <link rel="stylesheet" href="../css/base.css" />
+    <link rel="stylesheet" href="../css/layout.css" />
+    <link rel="stylesheet" href="../css/components.css" />
+    <link rel="stylesheet" href="../css/responsive.css" />
+    <link rel="stylesheet" href="../css/device_control.css" />
+</head>
+<body data-device-type="fan" data-scene="bathroom">
+    <!-- Header - Removed from here -->
+
+    <!-- Main Content -->
+    <div class="device-control-container main-content-area">
+         <!-- Header - Moved inside container and elements reordered -->
+        <header class="control-header">
+            <h1 id="device-name">卫生间风扇</h1>
+            <a href="bathroom.html" class="back-link">&larr; 返回卫生间</a>
+        </header>
+
+        <main class="control-layout"> <!-- Grid layout for panels -->
+            <div class="control-layout">
+                <!-- 左侧：控制面板 -->
+                <div class="control-panel">
+                    <h2>控制</h2>
+                    <div class="control-group">
+                        <label>电源:</label>
+                        <button id="power-toggle" class="control-button">切换</button>
+                        <span id="power-status" class="status-indicator">未知</span>
+                    </div>
+                     <div class="control-group">
+                        <label for="speed-select">风速:</label>
+                        <select id="speed-select" class="control-select">
+                            <option value="low">低速</option>
+                            <option value="medium">中速</option>
+                            <option value="high">高速</option>
+                            <!-- Add 'auto' if applicable -->
+                        </select>
+                        <span id="speed-status" class="status-indicator">未知</span>
+                    </div>
+                     <span id="control-status" class="status-indicator" style="grid-column: 1 / span 3; text-align: center; margin-top: 10px;"></span>
+                </div>
+
+                <!-- 右侧：状态显示 -->
+                <div class="status-and-chart">
+                    <h2>状态</h2>
+                     <div class="status-display">
+                        <p><span>当前状态:</span> <span id="fan-status">未知</span></p>
+                        <p><span>当前风速:</span> <span id="current-speed">--</span></p>
+                        <p class="last-updated"><small>最后更新: <span id="last-updated-time">--</span></small></p>
+                     </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer id="app-footer"></footer>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/sharedComponents.js"></script>
+    <script src="../js/device_control_fan.js"></script> <!-- Link to fan JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            insertHeader();
+            insertFooter();
+            // Initialize fan control logic
+            if (typeof initializeFanControl === 'function') {
+                initializeFanControl();
+            } else {
+                 console.error('initializeFanControl function not found.');
+                 const mainContent = document.querySelector('.device-control-container');
+                 if(mainContent) {
+                     mainContent.innerHTML = '<p style="color: red;">页面脚本加载失败，无法控制设备。</p>' + mainContent.innerHTML;
+                 }
+            }
+        });
+    </script>
+</body>
+</html> 

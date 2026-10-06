@@ -1,0 +1,120 @@
+:root {
+    /* === Light Theme Variables === */
+    --body-bg: #f7f7f7;
+    --container-bg: #ffffff;
+    --text-primary: #333;
+    --text-secondary: #555;
+    --text-muted: #777;
+    --text-accent: #2980b9;
+    --border-color-light: #f0f0f0;
+    --border-color-medium: #e0e0e0;
+    --border-color-dark: #bdc3c7;
+    --shadow-color: rgba(0, 0, 0, 0.06);
+    --shadow-color-hover: rgba(0, 0, 0, 0.08);
+    --header-bg: #ffffff;
+    --header-text: #34495e;
+    --button-bg: #3498db;
+    --button-text: #ffffff;
+    --button-hover-bg: #2980b9;
+    --button-secondary-bg: #e0e0e0;
+    --button-secondary-text: #555;
+    --button-secondary-hover-bg: #d0d0d0;
+    --card-bg: #ffffff;
+    --card-hover-bg: #ffffff; /* Keep card bg white on hover */
+    --status-ok-text: #28a745;
+    --status-ok-bg: rgba(40, 167, 69, 0.1);
+    --status-error-text: #dc3545;
+    --status-error-bg: rgba(220, 53, 69, 0.1);
+    --weather-area-bg: #f8f9fa;
+    --input-bg: #ffffff;
+    --input-border: #bdc3c7;
+    --input-focus-border: #3498db;
+    --link-color: #3498db;
+
+    /* Icons - Initially hide moon */
+    --display-sun-icon: inline-block;
+    --display-moon-icon: none;
+}
+
+.dark-theme {
+    /* === Dark Theme Variables === */
+    --body-bg: #121212;
+    --container-bg: #1e1e1e;
+    --text-primary: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --text-muted: #888;
+    --text-accent: #5dade2;
+    --border-color-light: #2c2c2c;
+    --border-color-medium: #3a3a3a;
+    --border-color-dark: #555;
+    --shadow-color: rgba(255, 255, 255, 0.04);
+    --shadow-color-hover: rgba(255, 255, 255, 0.08);
+    --header-bg: #1e1e1e;
+    --header-text: #e0e0e0;
+    --button-bg: #5dade2;
+    --button-text: #121212;
+    --button-hover-bg: #85c1e9;
+    --button-secondary-bg: #3a3a3a;
+    --button-secondary-text: #ccc;
+    --button-secondary-hover-bg: #4f4f4f;
+    --card-bg: #1e1e1e;
+    --card-hover-bg: #2c2c2c;
+    --status-ok-text: #73e08e;
+    --status-ok-bg: rgba(115, 224, 142, 0.15);
+    --status-error-text: #f17c87;
+    --status-error-bg: rgba(241, 124, 135, 0.15);
+    --weather-area-bg: #2c2c2c;
+    --input-bg: #2c2c2c;
+    --input-border: #555;
+    --input-focus-border: #5dade2;
+    --link-color: #5dade2;
+
+    /* Icons - Hide sun, show moon */
+    --display-sun-icon: none;
+    --display-moon-icon: inline-block;
+}
+
+/* === Base Body Styles === */
+
+body {
+    font-family:
+        -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+        'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI',
+        'Microsoft YaHei', Arial, sans-serif;
+    background-color: var(--body-bg); /* Use variable for background color */
+    color: var(--text-primary);
+    margin: 0;
+    padding: 0;
+    display: block;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+    min-height: 100vh;
+}
+
+/* === General Links === */
+a {
+    color: var(--link-color);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+a.scene-card-link {
+    color: inherit;
+    text-decoration: none;
+}
+a.scene-card-link:hover {
+    text-decoration: none;
+}
+
+/* === Base Headings (Example - can be expanded) === */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 0; /* Remove default top margin */
+    font-weight: 600; /* Consistent weight */
+}

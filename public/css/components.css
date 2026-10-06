@@ -1,0 +1,582 @@
+/* === Buttons === */
+button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 5px;
+    transition:
+        background-color 0.3s ease,
+        transform 0.1s ease;
+    box-shadow: 0 2px 5px var(--shadow-color);
+}
+
+button:hover {
+    background-color: var(--button-hover-bg);
+    transform: translateY(-1px);
+}
+
+button:active {
+    transform: translateY(0px);
+}
+
+/* Quick Action Button */
+.quick-action-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 10px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color-light);
+    border-radius: 12px;
+    box-shadow: 0 3px 10px var(--shadow-color);
+    cursor: pointer;
+    text-align: center;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.3s ease;
+    min-height: 90px; /* Smaller height */
+    color: var(--text-primary);
+}
+
+.quick-action-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px var(--shadow-color-hover);
+    border-color: var(--border-color-medium);
+    background-color: var(--card-hover-bg);
+}
+
+.quick-action-button .qa-icon {
+    font-size: 2em; /* Icon size */
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.quick-action-button .qa-label {
+    font-size: 0.9em;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    line-height: 1.2;
+}
+
+.quick-action-button .qa-status {
+    font-size: 0.8em;
+    color: var(--text-muted);
+}
+
+/* Optional: Style for active/on state */
+.quick-action-button.active .qa-icon {
+    color: var(--text-accent);
+}
+.quick-action-button.active .qa-status {
+    color: var(--status-ok-text);
+    font-weight: 600;
+}
+
+/* Scene Mode Button */
+.scene-mode-button {
+    display: inline-flex; /* Use inline-flex for better alignment */
+    align-items: center;
+    padding: 8px 18px; /* Smaller padding than primary buttons */
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+    border: 1px solid var(--border-color-medium);
+    border-radius: 20px; /* Rounded corners */
+    font-size: 0.95em;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.1s ease;
+    box-shadow: none; /* No shadow for secondary style */
+    margin: 0; /* Remove default button margin */
+}
+
+.scene-mode-button:hover {
+    background-color: var(--button-secondary-hover-bg);
+    border-color: var(--border-color-dark);
+    transform: translateY(-1px);
+}
+
+.scene-mode-button .mode-icon {
+    margin-right: 8px;
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+.scene-mode-button .mode-label {
+    line-height: 1;
+}
+
+/* Back Button */
+#back-button {
+    padding: 12px 30px;
+    font-size: 1em;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--button-secondary-bg);
+    color: var(--button-secondary-text);
+    transition: background-color 0.2s ease;
+    display: inline-block; /* Allow centering via text-align on parent */
+}
+
+#back-button:hover {
+    background-color: var(--button-secondary-hover-bg);
+}
+
+/* Theme Toggle Button */
+.theme-toggle-button {
+    position: absolute; /* Should this be in layout? Maybe, but closely tied to header component visuals */
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: 1px solid var(--border-color-medium);
+    color: var(--text-secondary);
+    padding: 5px 8px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+    line-height: 1;
+    box-shadow: none;
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.theme-toggle-button:hover {
+    background-color: var(--container-bg);
+    border-color: var(--border-color-dark);
+}
+
+.theme-toggle-button:active {
+    transform: translateY(-50%);
+}
+
+.theme-toggle-button .icon-sun {
+    display: var(--display-sun-icon);
+}
+
+.theme-toggle-button .icon-moon {
+    display: var(--display-moon-icon);
+}
+
+/* Login Submit Button */
+.login-container button[type='submit'] {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+/* === Cards === */
+/* Scene Card (on Index Page) */
+.scene-button {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    min-height: 110px;
+    padding: 18px 20px 15px 20px;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color-light);
+    color: var(--text-primary);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    border-radius: 14px;
+    text-align: left;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        border-color 0.2s ease,
+        background-color 0.3s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.scene-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px var(--shadow-color-hover);
+    border-color: var(--border-color-medium);
+    background-color: var(--card-hover-bg);
+}
+
+.scene-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.button-icon {
+    font-size: 2.2em;
+    color: var(--text-secondary);
+    margin-bottom: 0;
+}
+
+.scene-status {
+    font-size: 0.8em;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 10px;
+}
+
+.status-ok {
+    color: var(--status-ok-text);
+    background-color: var(--status-ok-bg);
+}
+.status-error {
+    color: var(--status-error-text);
+    background-color: var(--status-error-bg);
+}
+
+.button-text {
+    font-size: 1em;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: auto;
+    padding-bottom: 10px;
+}
+
+.scene-data-summary {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color-light);
+}
+
+.scene-data-summary .temp-data,
+.scene-data-summary .humidity-data {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+/* Device Card (on Scene Pages) */
+.device {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition:
+        transform 0.2s ease-out,
+        box-shadow 0.2s ease-out,
+        background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color-light);
+    min-height: 180px;
+}
+
+.device:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px var(--shadow-color-hover);
+    background-color: var(--card-hover-bg);
+}
+
+/* Active state for device card */
+.device.active {
+    border-left: 4px solid var(--text-accent); /* Add a visual indicator */
+    /* background-color: var(--weather-area-bg); /* Optional slightly different bg */
+}
+
+.device.active .device-icon {
+     color: var(--text-accent); /* Highlight icon */
+}
+
+/* Optional: Change status text color when active */
+/* .device.active .device-status {
+    color: var(--status-ok-text);
+} */
+
+.device-icon {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--text-secondary);
+    text-align: left;
+}
+.device-info {
+    text-align: left;
+    margin-bottom: 10px;
+}
+.device-info h3 {
+    margin: 0 0 5px 0;
+    color: var(--text-primary);
+    font-size: 1.05em;
+    font-weight: 600;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+.device-status {
+    margin: 0;
+    font-size: 0.9em;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.device-details {
+    text-align: left;
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-color-light);
+}
+.device-details p {
+    margin: 3px 0;
+    line-height: 1.4;
+}
+.device-details .data-key {
+    font-weight: normal;
+    color: var(--text-muted);
+}
+.device-details .data-value {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+.device-details .last-updated {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: #aaa;
+    text-align: right;
+}
+.dark-theme .device-details .last-updated {
+    color: #666;
+}
+
+/* === Forms === */
+label {
+    color: var(--text-secondary);
+}
+
+.login-container .form-group label {
+    width: 70px;
+    flex-shrink: 0;
+    text-align: right;
+    padding-right: 5px;
+}
+
+input[type='text'],
+input[type='password'] {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    color: var(--text-primary);
+    border-radius: 6px;
+    padding: 12px 10px;
+    font-size: 16px;
+    width: calc(100% - 22px); /* Default width */
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.login-container .form-group input[type='text'],
+.login-container .form-group input[type='password'] {
+    flex-grow: 1; /* Allow input to take remaining space in flex group */
+    width: auto;
+}
+
+input[type='text']:focus,
+input[type='password']:focus {
+    border-color: var(--input-focus-border);
+    outline: none;
+}
+
+/* === Other Components === */
+/* Weather Area Content */
+.weather-display h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.1em;
+    color: var(--text-primary);
+}
+.weather-display p {
+    margin: 0;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+}
+.weather-icon-large {
+    font-size: 2.5em;
+    margin-right: 15px;
+}
+.clothing-recommendation p {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+.clothing-recommendation strong {
+    color: var(--text-primary);
+    margin-right: 5px;
+}
+
+/* Weather Loading Indicator */
+.weather-loading {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Login Logo Placeholder */
+.logo-placeholder {
+    font-size: 3.5em;
+    color: var(--text-secondary);
+    display: block; /* Ensure it takes space */
+    margin-bottom: 20px; /* Add space below logo */
+}
+
+/* System Status Item */
+.status-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 0; /* Vertical padding */
+    border-bottom: 1px solid var(--border-color-light); /* Separator line */
+    transition: border-color 0.3s ease;
+}
+
+.status-item:last-child {
+    border-bottom: none; /* No border for the last item */
+}
+
+.status-item .status-icon {
+    font-size: 1.1em;
+    margin-right: 12px;
+    width: 20px; /* Fixed width for alignment */
+    text-align: center;
+}
+
+.status-item .status-label {
+    flex-grow: 1; /* Label takes available space */
+    font-size: 0.95em;
+    color: var(--text-secondary);
+}
+
+.status-item .status-value {
+    font-size: 0.95em;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Status coloring (similar to scene status) */
+.status-item.status-ok .status-icon,
+.status-item.status-ok .status-value {
+    color: var(--status-ok-text);
+}
+
+.status-item.status-error .status-icon,
+.status-item.status-error .status-value {
+    color: var(--status-error-text);
+}
+
+.status-item.status-warning .status-icon,
+.status-item.status-warning .status-value {
+    color: #f39c12; /* Example warning color */
+}
+
+/* Loading state inside list */
+.status-items-list p {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+/* Activity Log Item */
+.log-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 5px; /* Padding for each item */
+    border-bottom: 1px solid var(--border-color-light);
+    transition: background-color 0.2s ease;
+}
+
+.log-item:last-child {
+    border-bottom: none;
+}
+
+.log-item:hover {
+    background-color: var(--weather-area-bg); /* Slight hover effect */
+}
+
+.log-item .log-icon {
+    font-size: 1.1em;
+    margin-right: 15px;
+    color: var(--text-secondary);
+    width: 25px; /* Align icons */
+    text-align: center;
+}
+
+.log-item .log-message {
+    flex-grow: 1;
+    font-size: 0.95em;
+    color: var(--text-primary);
+}
+
+.log-item .log-time {
+    font-size: 0.85em;
+    color: var(--text-muted);
+    margin-left: 15px;
+    white-space: nowrap; /* Prevent time from wrapping */
+}
+
+/* ==========================================
+   Device Control Modal Styles
+   ========================================== */
+
+/* Removed Device Control Modal Styles */
+
+.system-status-area .status-title {
+    position: relative; /* For positioning the arrow */
+    cursor: pointer; /* Indicate it's clickable */
+    padding-right: 25px; /* Make space for the arrow */
+    -webkit-user-select: none; /* Safari */
+    user-select: none; /* Prevent text selection on click */
+}
+
+.system-status-area .status-title::after {
+    content: '▲'; /* Up arrow when expanded */
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.8em;
+    color: var(--text-secondary);
+    transition: transform 0.3s ease;
+}
+
+.system-status-area.collapsed .status-title::after {
+    transform: translateY(-50%) rotate(180deg); /* Point down when collapsed */
+}
+
+.system-status-area .status-items-list {
+    max-height: 500px; /* Adjust as needed, large enough for content */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-in, margin-top 0.4s ease-out;
+    opacity: 1;
+    margin-top: 10px; /* Space between title and list */
+    border-top: 1px solid var(--border-color); /* Optional separator */
+    padding-top: 10px; /* Optional padding */
+}
+
+.system-status-area.collapsed .status-items-list {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none; /* Hide border when collapsed */
+}
+
+/* Removed icon adjustments for send button, reverting to base style */
+/* #assistant-send-button {
+    font-size: 18px; 
+    padding: 8px 10px; 
+} */
